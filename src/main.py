@@ -1,31 +1,35 @@
 """
-Personal Dashboard - главный модуль приложения.
-Запускает окно PySide6 с приветствием.
+Personal Dashboard — точка входа.
+Создаёт экземпляр DashboardApp и подключает модули.
 """
 
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
-from PySide6.QtCore import Qt
+from pathlib import Path
 
+# Корень проекта в path для импорта src.* при запуске python src/main.py
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-class MainWindow(QMainWindow):
-    """Главное окно приложения."""
+from PySide6.QtWidgets import QApplication
 
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Personal Dashboard v0.1")
-        self.setMinimumSize(400, 300)
-        self.resize(600, 400)
-
-        label = QLabel("Добро пожаловать в Personal Dashboard!")
-        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        label.setStyleSheet("font-size: 16px; padding: 20px;")
-        self.setCentralWidget(label)
+from src.core import DashboardApp
 
 
 def main():
     app = QApplication(sys.argv)
-    window = MainWindow()
+
+    # Создаём главное окно приложения
+    window = DashboardApp(title="Personal Dashboard", version="0.1")
+
+    # Вариант 1: загрузка модуля из папки modules/ через ModuleManager
+    manager = window.get_module_manager()
+    welcome = manager.load_module("welcome_module")
+    if welcome is not None:
+        window.register_module(welcome)
+
+    # Вариант 2: создать свой модуль и зарегистрировать:
+    # from src.modules.welcome_module import WelcomeModule
+    # window.register_module(WelcomeModule())
+
     window.show()
     sys.exit(app.exec())
 
