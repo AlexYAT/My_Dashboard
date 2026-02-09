@@ -5,15 +5,27 @@
 ## Структура проекта
 
 ```
-personal_dashboard/
+My_Dashboard/
 ├── src/
 │   ├── core/
+│   │   ├── dashboard_app.py   # Главное окно (QMainWindow)
+│   │   ├── base_module.py     # Базовый класс модулей
+│   │   └── module_manager.py # Загрузка модулей из modules/
 │   ├── modules/
-│   └── main.py
+│   │   └── welcome_module.py  # Пример модуля
+│   └── main.py                # Точка входа
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
+
+## Ядро приложения
+
+- **DashboardApp** — главное окно с центральной областью для виджетов модулей и меню (Файл → Выход).
+- **BaseModule** — абстрактный класс модуля: `get_name()`, `get_widget()`, `on_load()`, `on_unload()`, свойства `module_id`, `version`, `author`, `description`.
+- **ModuleManager** — загрузка/выгрузка модулей из папки `src/modules/`: `load_module()`, `unload_module()`, `get_modules()`.
+
+Новый модуль: класс в `src/modules/`, наследник `BaseModule`; загрузка через `get_module_manager().load_module("имя_файла")` и `register_module(module)`.
 
 ## Быстрый старт
 
@@ -40,4 +52,4 @@ personal_dashboard/
    python src/main.py
    ```
 
-Появится окно PySide6 с заголовком "Personal Dashboard v0.1".
+Откроется окно «Personal Dashboard v0.1» с меню и приветственным модулем.

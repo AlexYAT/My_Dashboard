@@ -20,13 +20,16 @@ def main():
     # Создаём главное окно приложения
     window = DashboardApp(title="Personal Dashboard", version="0.1")
 
-    # Вариант 1: загрузка модуля из папки modules/ через ModuleManager
+    # Загрузка модулей через ModuleManager
     manager = window.get_module_manager()
     welcome = manager.load_module("welcome_module")
     if welcome is not None:
         window.register_module(welcome)
+    pomodoro = manager.load_module("pomodoro")
+    if pomodoro is not None:
+        window.register_module(pomodoro)
 
-    # Вариант 2: создать свой модуль и зарегистрировать:
+    # Альтернатива: создать модуль и зарегистрировать:
     # from src.modules.welcome_module import WelcomeModule
     # window.register_module(WelcomeModule())
 
