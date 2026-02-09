@@ -27,6 +27,12 @@ class WelcomeModule(BaseModule):
     def get_name(self) -> str:
         return "Приветствие"
 
+    def get_icon(self) -> str:
+        return "👋"
+
+    def get_short_name(self) -> str:
+        return "Привет"
+
     def get_widget(self) -> QWidget:
         if self._widget is None:
             self._widget = QLabel("Добро пожаловать в Personal Dashboard!")

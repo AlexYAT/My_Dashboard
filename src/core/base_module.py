@@ -15,6 +15,7 @@ class BaseModule(ABC):
         self._version: str = "0.1.0"
         self._author: str = ""
         self._description: str = ""
+        self._requires_confirmation: bool = False
 
     @property
     def module_id(self) -> str:
@@ -35,6 +36,19 @@ class BaseModule(ABC):
     def description(self) -> str:
         """Описание модуля."""
         return self._description
+
+    @property
+    def requires_confirmation(self) -> bool:
+        """Нужно ли подтверждение перед закрытием приложения при активном модуле."""
+        return self._requires_confirmation
+
+    def get_icon(self) -> str:
+        """Возвращает иконку модуля (эмодзи или путь). По умолчанию пустая строка."""
+        return ""
+
+    def get_short_name(self) -> str:
+        """Короткое название для кнопки в панели навигации. По умолчанию — get_name()."""
+        return self.get_name()
 
     @abstractmethod
     def get_name(self) -> str:

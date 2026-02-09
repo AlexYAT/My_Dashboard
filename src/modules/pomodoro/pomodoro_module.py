@@ -22,10 +22,17 @@ class PomodoroModule(BaseModule):
         self._version = "0.1.0"
         self._author = "Personal Dashboard"
         self._description = "Таймер Pomodoro: 25 минут работы, 5 минут перерыва"
+        self._requires_confirmation = True
         self._widget: QWidget | None = None
 
     def get_name(self) -> str:
         return "🍅 Pomodoro Timer"
+
+    def get_icon(self) -> str:
+        return "🍅"
+
+    def get_short_name(self) -> str:
+        return "Pomodoro"
 
     def get_widget(self) -> QWidget:
         if self._widget is None:
