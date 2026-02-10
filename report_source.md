@@ -2,7 +2,7 @@
 
 **Назначение:** синхронизация Notion ↔ DeepSeek ↔ src (актуальная структура и содержание исходников).
 
-**Дата:** 2025-02-08  
+**Дата:** 2026-02-10  
 **Проект:** My_Dashboard — десктопное приложение на Python + PySide6 для личной продуктивности.
 
 ---
@@ -104,6 +104,7 @@ My_Dashboard/
 
 ### 4.6. src/core/dashboard_app.py
 
+- **Файл в проекте:** `src/core/dashboard_app.py` — главное окно приложения (класс DashboardApp, QMainWindow). В проекте нет файла app.py; весь код главного окна находится в dashboard_app.py.
 - **Назначение:** главное окно приложения: панель навигации слева, центральная область — активный модуль (QStackedWidget); сохранение последнего модуля в JSON.
 - **Импорты:** json, pathlib.Path, typing.Optional, PySide6.QtGui (QAction, QKeySequence), PySide6.QtWidgets (QApplication, QFrame, QMainWindow, QMessageBox, QPushButton, QSizePolicy, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget), .base_module.BaseModule, .module_manager.ModuleManager.
 - **Вспомогательная функция:** _config_path() → Path: QStandardPaths.AppConfigLocation / "Personal_Dashboard" / "dashboard_state.json".
