@@ -125,6 +125,8 @@ class DashboardApp(QMainWindow):
             return "👋 Привет"
         if module_name == "pomodoro":
             return "🍅 Pomodoro"
+        if module_name == "finance":
+            return "💰 Финансы"
         return module_name.replace("_", " ").title()
 
     def _on_nav_click(self, module_name: str) -> None:
